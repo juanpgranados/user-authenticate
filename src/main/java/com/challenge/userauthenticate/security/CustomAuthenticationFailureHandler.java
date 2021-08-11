@@ -42,7 +42,7 @@ public class CustomAuthenticationFailureHandler extends SimpleUrlAuthenticationF
             // Block account by third unsuccessful attempt
             } else {
                 userService.updateStatus(user.getUserName(), LOCKED_USER);
-                exception = new LockedException("Account is locked since you have exceeded the number of trial");
+                exception = new LockedException("Account is locked since you have exceeded the number of attempts");
                 // Store information about failed login
                 loginAttemptService.storeAttempt(new LoginAttemptModel(user.getUserName(), false, user.getFailedAttempts() + 1, new Date(), LOCKED_USER));
             }
